@@ -15,6 +15,7 @@ const verifyEmailFormat = (email) => {
     const regex = new RegExp({ pattern: '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$', flags: 'i' });
     return regex.test(email);
 };
+
 const SMTPStages = {
     CHECK_CONNECTION_ESTABLISHED: 'CHECK_CONNECTION_ESTABLISHED',
     SEND_EHLO: 'SEND_EHLO',
@@ -190,8 +191,12 @@ const validateEmail = async (email) => {
 }
 
 async function main() {
-    let email = 'saimarshadsaim31@gmail.com'
+    let email = 'uzerahmed151@gmail.com'
     const result = await validateEmail(email)
     console.log('result', result)
 }
 main()
+
+module.exports = {
+    validateEmail
+}
