@@ -4,6 +4,7 @@ const net = require('net');
 
 
 const resolveMXRecords = async (domain) => {
+    console.log('resolving mx records for domain...', domain)
     try {
         return await promises.resolveMx(domain)
     } catch (error) {
@@ -61,7 +62,7 @@ const testInboxOnSMTPServer = async (inboxAddress, smtpAddress) => {
             const reply = data.toString()
             response += reply
 
-            console.log('<-- ' + reply)
+            // console.log('<-- ' + reply)
             const currentStage = stages[currentStageName]
 
             switch (currentStageName) {
@@ -156,6 +157,7 @@ const validateEmail = async (email) => {
     const [, domain] = email.split('@')
     const mxRecords = await resolveMXRecords(domain)
     const sortedMxRecords = mxRecords.sort((a, b) => a.priority - b.priority)
+    console.log('sortedMxRecords', sortedMxRecords)
 
     let smtpResult = { connection_established: false, account_exists: false }
     let hostIndex = 0
@@ -171,6 +173,7 @@ const validateEmail = async (email) => {
             }
         } catch (error) {
             console.error(error)
+            hostIndex++
         }
     }
     let usesCatchAll = false
@@ -191,7 +194,7 @@ const validateEmail = async (email) => {
 }
 
 async function main() {
-    let email = 'uzerahmed151@gmail.com'
+    let email = 'kennedyviolet563@gmail.com'
     const result = await validateEmail(email)
     console.log('result', result)
 }
