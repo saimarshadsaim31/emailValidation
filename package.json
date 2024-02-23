@@ -11,9 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "csv-parser": "^3.0.0",
+    "deep-email-validator": "^0.1.21",
     "dns": "^0.2.2",
     "email-check": "^1.1.0",
+    "fast-csv": "^5.0.1",
     "net": "^1.0.2",
+    "smtp-client": "^0.4.0",
     "telnet-client": "^2.1.0"
   }
 }

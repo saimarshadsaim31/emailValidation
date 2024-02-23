@@ -164,15 +164,17 @@ const validateEmail = async (email) => {
 
     while (hostIndex < sortedMxRecords.length) {
         try {
+            console.log('testing inbox on smtp server', sortedMxRecords[hostIndex].exchange)
             smtpResult = await testInboxOnSMTPServer(email, sortedMxRecords[hostIndex].exchange)
             if (!smtpResult.connection_established) {
+                console.log('connection not established')
                 hostIndex++
             }
             else {
                 break
             }
         } catch (error) {
-            console.error(error)
+            console.error('error while testing inbox on smtp server', error)
             hostIndex++
         }
     }
@@ -194,7 +196,7 @@ const validateEmail = async (email) => {
 }
 
 async function main() {
-    let email = 'kennedyviolet563@gmail.com'
+    let email = 'abc@liqueous.com'
     const result = await validateEmail(email)
     console.log('result', result)
 }
